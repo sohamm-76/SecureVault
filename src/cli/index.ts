@@ -2,6 +2,7 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import { rateLimitScanner } from "../scanners/rateLimitScanner";
+import { brokenAuthScanner } from "../scanners/brokenAuthScanner";
 import { ScanTarget, ScanResult, Vulnerability } from "../utils/types";
 
 const program = new Command();
@@ -30,7 +31,7 @@ program
     const allVulnerabilities: Vulnerability[] = [];
 
     // ── Run all scanners ──────────────────────────────────────────────────────
-    const scanners = [rateLimitScanner]; // add more scanners here on Day 3+
+    const scanners = [rateLimitScanner, brokenAuthScanner];
 
     for (const scanner of scanners) {
       process.stdout.write(chalk.gray(`  ⏳ Running: ${scanner.name} ...`));
