@@ -3,12 +3,13 @@ import { Command } from "commander";
 import chalk from "chalk";
 import { rateLimitScanner } from "../scanners/rateLimitScanner";
 import { brokenAuthScanner } from "../scanners/brokenAuthScanner";
+import { dataExposureScanner } from "../scanners/dataExposureScanner";
 import { ScanTarget, ScanResult, Vulnerability } from "../utils/types";
 
 const program = new Command();
 
 program
-  .name("securevault")
+  .name("aperture")
   .description("Automated REST API vulnerability scanner — OWASP API Top 10")
   .version("0.1.0");
 
@@ -25,13 +26,13 @@ program
       timeout: parseInt(options.timeout),
     };
 
-    console.log(chalk.bold(`\n🔍 SecureVault — scanning ${target.baseUrl}\n`));
+    console.log(chalk.bold(`\n🔍 Aperture — scanning ${target.baseUrl}\n`));
 
     const startTime = Date.now();
     const allVulnerabilities: Vulnerability[] = [];
 
     // ── Run all scanners ──────────────────────────────────────────────────────
-    const scanners = [rateLimitScanner, brokenAuthScanner];
+    const scanners = [rateLimitScanner, brokenAuthScanner, dataExposureScanner];
 
     for (const scanner of scanners) {
       process.stdout.write(chalk.gray(`  ⏳ Running: ${scanner.name} ...`));
