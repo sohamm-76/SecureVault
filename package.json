@@ -1,11 +1,9 @@
 {
-  "name": "securevault",
+  "name": "aperture",
   "version": "0.1.0",
   "description": "Automated REST API vulnerability scanner — OWASP API Top 10",
   "main": "dist/cli/index.js",
-  "bin": {
-    "securevault": "./dist/cli/index.js"
-  },
+  "bin": { "aperture": "./dist/cli/index.js" },
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/cli/index.ts",
@@ -13,9 +11,6 @@
     "test": "jest",
     "start:api": "ts-node vulnerable-api/index.ts"
   },
-  "keywords": ["security", "api", "owasp", "scanner", "cli"],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
     "chalk": "^4.1.2",
